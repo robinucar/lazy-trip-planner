@@ -13,20 +13,36 @@ import {
 } from "@material-ui/icons";
 import clsx from "clsx";
 import { search } from "./api";
+
 const useStyles = makeStyles((theme) => ({
-  // ...
+  cityName: {
+    fontWeight: 400,
+  },
+  icon: {
+    color: theme.palette.text.secondary,
+  },
+  optionIcon: {
+    marginRight: theme.spacing(2),
+  },
+  searchIcon: {
+    marginLeft: theme.spacing(1),
+  },
 }));
 const Search = ({ setCityCode }) => {
   const classes = useStyles();
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
+
   useEffect(() => {
     const { process, cancel } = search(inputValue);
+
     process((options) => {
       setOptions(options);
     });
+
     return () => cancel();
   }, [inputValue]);
+
   return (
     <div>
       <Autocomplete
@@ -82,4 +98,5 @@ const Search = ({ setCityCode }) => {
     </div>
   );
 };
+
 export { Search };
