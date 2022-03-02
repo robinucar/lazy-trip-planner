@@ -28,14 +28,10 @@ mongoose
   .then(() => console.log("MongoDB connected..."))
   .catch((err) => console.log(err));
 
-  
-    //Set static folder
-    app.use(express.static("client/build"));
-  
-    // app.get("*", (req, res) =>
-    //   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-    // );
-  
+// EJS
+
+app.use(expressLayouts);
+app.set("view engine", "ejs");
 
 //Body parser
 app.use(express.urlencoded({ extended: false }));

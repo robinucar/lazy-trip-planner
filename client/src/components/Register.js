@@ -131,7 +131,7 @@ function Register() {
                   name="password2"
                   label="Password2"
                   value ={password2}
-                  onChange={(e)=>setPassword(e.target.value)}
+                  onChange={(e)=>setPassword2(e.target.value)}
                   type="password"
                   id="password2"
                   autoComplete="new-password"
