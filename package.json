@@ -2,16 +2,21 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "server": "nodemon app.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mui/material": "^5.4.4",
+    "@mui/styled-engine-sc": "^5.4.2",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^7.0.0",
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.6",
     "ejs-layouts": "^0.0.1",
@@ -21,6 +26,8 @@
     "mongoose": "^6.2.4",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react-scripts": "^5.0.0",
+    "styled-components": "^5.3.3"
   }
 }

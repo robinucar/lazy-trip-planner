@@ -19,19 +19,19 @@ const passport = require("passport");
 //set homepage router and welcome message
 
 // Register page
-router.get("/register", (req, res) => res.render("register"));
-router.get("/login", (req, res) => res.render("login"));
+router.get("/register", (req, res) => res.render("/register"));
+router.get("/login", (req, res) => res.render("/login"));
 
 //register handle
 router.post("/register", (req, res) => {
   //distracting
-  const { name, email, password, password2 } = req.body;
+  const { firstName, lastName, email, password, password2 } = req.body;
 
   //VALIDATIONS
   let errors = [];
 
   //check required fields
-  if (!name || !email || !password || !password2) {
+  if (!firstName || !lastName || !email || !password || !password2) {
     errors.push({ msg: "Please fill in all fields" });
   }
 
@@ -48,7 +48,7 @@ router.post("/register", (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("register", {
+    res.render("../client/src/components/register", {
       errors,
       name,
       email,
@@ -61,16 +61,18 @@ router.post("/register", (req, res) => {
       if (user) {
         // User exists
         errors.push({ msg: "Email is alredy registered" });
-        res.render("register", {
+        res.render("../client/src/components/register", {
           errors,
-          name,
+          firstName,
+          lastName,
           email,
           password,
           password2,
         });
       } else {
         const newUser = new User({
-          name,
+          firstName,
+          lastName,
           email,
           password,
         });
@@ -93,7 +95,7 @@ router.post("/register", (req, res) => {
                   "success_msg",
                   "You are now registered and can log in"
                 );
-                res.redirect("login");
+                res.redirect("../client/src/components/login");
               })
               .catch((err) => console.log(err));
           })

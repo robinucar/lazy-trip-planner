@@ -15,11 +15,11 @@ const app = express();
 
 //passport config
 const passport = require('passport')
-require('./config/passport')(passport)
+require('./server/config/passport')(passport)
 
 // DB Config
 
-const db = require("./config/keys").MongoURL;
+const db = require("./server/config/keys").MongoURL;
 
 // Connect to mongo
 
@@ -28,10 +28,14 @@ mongoose
   .then(() => console.log("MongoDB connected..."))
   .catch((err) => console.log(err));
 
-// EJS
-
-app.use(expressLayouts);
-app.set("view engine", "ejs");
+  
+    //Set static folder
+    app.use(express.static("client/build"));
+  
+    // app.get("*", (req, res) =>
+    //   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    // );
+  
 
 //Body parser
 app.use(express.urlencoded({ extended: false }));
@@ -61,11 +65,11 @@ app.use(function(req, res, next) {
 
 // call index routes
 
-app.use("/", require("./routes/index"));
+app.use("/", require("./server/routes/index"));
 
 // call users routes
 
-app.use("/users", require("./routes/users"));
+app.use("/users", require("./server/routes/users"));
 
 // setup port
 
