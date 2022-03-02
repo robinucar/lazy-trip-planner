@@ -21,6 +21,7 @@ function Register() {
     const [lastName, setLastname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [password2, setPassword2] = useState('')
 
     const [error, setError] = useState('')
 
@@ -121,6 +122,19 @@ function Register() {
                   onChange={(e)=>setPassword(e.target.value)}
                   type="password"
                   id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password2"
+                  label="Confirm Password"
+                  value ={password2}
+                  onChange={(e)=>setPassword2(e.target.value)}
+                  type="password"
+                  id="password2"
                   autoComplete="new-password"
                 />
               </Grid>
